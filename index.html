@@ -4,21 +4,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>북마크 관리자</title>
 
-  <!-- 파비콘 (자주 가는 사이트 별 아이콘) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' fill='%23fdd663'/%3E%3C/svg%3E">
 
-  <!-- SortableJS (드래그 앤 드롭 지원) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
-  <!-- Google Material Symbols (아이콘) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-  <!-- Pretendard -->
   <link rel="stylesheet" as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 
   <style>
-    /* =========================================================
-       Design tokens — monochrome, hairline, minimal
-       (typing.works 의 절제된 흑백 톤 + Google Fonts Icons 의 깔끔한 Material 톤)
-    ========================================================= */
     :root {
       --bg-color: #fafafa;
       --card-bg: #ffffff;
@@ -44,7 +36,6 @@
     }
 
     [data-theme="dark"] {
-      /* Google Fonts 다크 테마 팔레트 */
       --bg-color: #202124;
       --card-bg: #292a2d;
       --surface-hover: #35363a;
@@ -80,7 +71,6 @@
 
     input[type="text"], textarea { ime-mode: active; }
 
-    /* Material Symbols 기본 설정 */
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
       font-size: 20px;
@@ -90,7 +80,7 @@
       display: inline-block;
       width: 1em;
       height: 1em;
-      overflow: hidden;      /* 폰트 로딩 전 글자(ligature)가 보이지 않도록 고정 */
+      overflow: hidden;
       white-space: nowrap;
     }
     .material-symbols-outlined.filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
@@ -99,9 +89,6 @@
 
     .container { max-width: 1320px; margin: 0 auto; padding: 0 28px 64px 28px; }
 
-    /* =========================================================
-       Header
-    ========================================================= */
     header {
       position: sticky;
       top: 0;
@@ -121,27 +108,8 @@
       margin-bottom: 32px;
     }
 
-    h1 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--text-color);
-    }
-    h1 .logo-mark {
-      width: 30px; height: 30px;
-      border-radius: 0;
-      background: var(--primary-color);
-      color: var(--on-primary);
-      display: inline-flex; align-items: center; justify-content: center;
-    }
-    h1 .logo-mark .material-symbols-outlined { font-size: 18px; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-
     .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 
-    /* Search (Google Fonts 스타일의 필 형태 검색창) */
     .search-bar { position: relative; flex-grow: 1; width: 300px; max-width: 100%; }
     .search-bar input {
       width: 100%;
@@ -168,7 +136,6 @@
     }
     .search-bar input:focus ~ kbd, .search-bar input:not(:placeholder-shown) ~ kbd { display: none; }
 
-    /* Buttons */
     button {
       cursor: pointer;
       border: 1px solid transparent;
@@ -195,10 +162,8 @@
     .btn-danger { background-color: transparent; color: var(--danger-color); border-color: var(--border-color); }
     .btn-danger:hover { background-color: var(--danger-color); border-color: var(--danger-color); color: #fff; }
 
-    /* 아이콘 전용 버튼 (헤더 테마 토글 등) */
     .btn-secondary.btn-icon { width: 40px; padding: 0; }
 
-    /* 리스트 내 아이콘 버튼 */
     .btn-icon {
       width: 28px; height: 28px; padding: 0;
       border-radius: 0;
@@ -209,9 +174,6 @@
     .btn-icon .material-symbols-outlined { font-size: 18px; }
     .btn-icon:hover { background-color: var(--surface-active); color: var(--text-color); }
 
-    /* =========================================================
-       Categories (Masonry)
-    ========================================================= */
     .categories-grid { column-width: 300px; column-gap: 20px; }
 
     .category-card {
@@ -228,7 +190,6 @@
     }
     .category-card:hover { border-color: var(--border-strong); }
 
-    /* 자주 가는 사이트 (고정 폴더) */
     .category-card.starred-folder { border-color: var(--text-color); }
     .category-card.starred-folder .category-title { padding-left: 6px; }
     .category-card.starred-folder .category-header { border-bottom-color: var(--text-color); }
@@ -240,7 +201,7 @@
       align-items: center;
       min-height: 46px;
       padding: 0 8px 0 8px;
-      background-color: var(--bg-color);       /* 폴더 헤더 영역을 본문과 다른 톤으로 구분 */
+      background-color: var(--bg-color);
       border-bottom: 1px solid var(--border-color);
     }
     .category-title {
@@ -285,7 +246,6 @@
     .category-header .btn-icon:focus-visible { opacity: 1; }
     .category-header .btn-icon:hover { color: var(--danger-color); }
 
-    /* 이동(드래그) 아이콘 — 모든 곳에서 동일한 drag_handle 하나로 통일 */
     .drag-handle {
       cursor: grab;
       color: var(--text-subtle);
@@ -300,9 +260,6 @@
     .drag-handle:hover { opacity: 1; color: var(--text-color); }
     .drag-handle:active { cursor: grabbing; }
 
-    /* =========================================================
-       Bookmark list — [이동]  제목 ........ [연필][별]
-    ========================================================= */
     .bookmark-list { list-style: none; flex-grow: 1; min-height: 28px; padding: 8px 8px 8px 8px; }
 
     .bookmark-item {
@@ -334,19 +291,16 @@
     .bookmark-desc { font-size: 0.74rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: -2px; padding-bottom: 3px; }
     .bookmark-info:hover .bookmark-title { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 
-    /* 오른쪽 액션 영역: 연필 + 별 (별이 가장 오른쪽) */
     .bookmark-actions { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
     .bookmark-actions .btn-icon { opacity: 0; }
     .bookmark-item:hover .bookmark-actions .btn-icon,
     .bookmark-item:focus-within .bookmark-actions .btn-icon { opacity: 1; }
-    /* 별이 켜진 항목은 항상 보이게 */
     .bookmark-actions .star-btn-inline.is-on { opacity: 1; }
 
     .star-icon { font-size: 18px !important; color: var(--text-subtle); }
     .star-btn-inline:hover .star-icon { color: var(--star-color); }
     .star-icon.active { color: var(--star-color) !important; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
 
-    /* 드래그 상태 */
     .sortable-ghost { opacity: 0.35; background-color: var(--surface-active) !important; }
     .sortable-chosen { background-color: var(--card-bg); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
 
@@ -361,9 +315,6 @@
     .empty-state .material-symbols-outlined { font-size: 40px; color: var(--text-subtle); margin-bottom: 12px; display: block; }
     .empty-state p { font-size: 0.9rem; }
 
-    /* =========================================================
-       Modal
-    ========================================================= */
     .modal {
       display: none;
       position: fixed; inset: 0;
@@ -420,7 +371,6 @@
     .form-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 26px; }
     .form-actions-right { display: flex; gap: 8px; margin-left: auto; }
 
-    /* Toast */
     .toast {
       position: fixed; left: 50%; bottom: 28px;
       transform: translate(-50%, 20px);
@@ -438,7 +388,6 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes popIn { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
 
-    /* 터치 기기: hover 가 없으므로 액션 아이콘 항상 표시 */
     @media (hover: none) {
       .bookmark-actions .btn-icon, .category-header .btn-icon { opacity: 1; }
       .btn-icon { width: 36px; height: 36px; }
@@ -468,16 +417,12 @@
 
   <div class="container">
     <header>
-      <h1>
-        <span class="logo-mark"><span class="material-symbols-outlined">bookmark</span></span>
-        내 북마크
-      </h1>
+      <div class="search-bar">
+        <span class="material-symbols-outlined">search</span>
+        <input type="text" id="searchInput" placeholder="제목 또는 URL 검색" autocomplete="off" oninput="render()">
+        <kbd>/</kbd>
+      </div>
       <div class="actions">
-        <div class="search-bar">
-          <span class="material-symbols-outlined">search</span>
-          <input type="text" id="searchInput" placeholder="제목 또는 URL 검색" autocomplete="off" oninput="render()">
-          <kbd>/</kbd>
-        </div>
         <button class="btn-secondary" onclick="openCategoryModal()" title="새 폴더 추가">
           <span class="material-symbols-outlined">create_new_folder</span><span class="btn-label">폴더</span>
         </button>
@@ -2193,7 +2138,6 @@
         </div></div>
   </div>
 
-  <!-- 카테고리 모달 -->
   <div id="categoryModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -2215,7 +2159,6 @@
     </div>
   </div>
 
-  <!-- 북마크 모달 -->
   <div id="bookmarkModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -2259,9 +2202,6 @@
   <div class="toast" id="toast" role="status" aria-live="polite"><span class="material-symbols-outlined">check_circle</span><span id="toastText"></span></div>
 
   <script>
-    /* =========================================================
-       기본 내장 데이터 (DB)
-    ========================================================= */
     const DEFAULT_DATA = {
   "theme": "light",
   "categories": [
@@ -2935,7 +2875,6 @@
         try { data = JSON.parse(saved); } catch(e){}
       }
       if (!data) data = JSON.parse(JSON.stringify(DEFAULT_DATA));
-      /* 테마는 별도 키로 관리 (없으면 코드 기본값 = 다크) */
       data.theme = localStorage.getItem('bookmark_app_theme') || DEFAULT_DATA.theme || 'dark';
       return data;
     }
@@ -2944,7 +2883,6 @@
       localStorage.setItem('bookmark_app_data', JSON.stringify(state));
     }
 
-    /* 표시용: 폴더 이름에 남아 있을 수 있는 이모지를 화면에서 제거 (데이터는 그대로) */
     function displayName(str) {
       return String(str).replace(/[\p{Extended_Pictographic}\uFE0F\u200D]/gu, '').trim();
     }
@@ -2970,7 +2908,6 @@
       showToast._t = setTimeout(() => t.classList.remove('show'), 2200);
     }
 
-    /* 리스트 상에서 별 아이콘 직접 클릭 토글 기능 */
     function toggleBookmarkStarInline(bmId, event) {
       if (event) event.stopPropagation();
       const bm = state.bookmarks.find(b => b.id === bmId);
@@ -3000,7 +2937,6 @@
         bm.url.toLowerCase().includes(query) ||
         (bm.desc && bm.desc.toLowerCase().includes(query));
 
-      /* 중요(별) 표시 모음 폴더 (수정/삭제 불가, 최상단 고정) */
       const starredBookmarks = state.bookmarks.filter(bm => bm.isStarred && matches(bm));
 
       if (starredBookmarks.length > 0 || !query) {
@@ -3024,7 +2960,6 @@
         container.appendChild(starCard);
       }
 
-      /* 일반 카테고리 렌더링 */
       state.categories.forEach(cat => {
         const catBookmarks = state.bookmarks.filter(bm => bm.categoryId === cat.id && matches(bm));
         if (query && catBookmarks.length === 0) return;
@@ -3061,7 +2996,6 @@
       initSortable();
     }
 
-    /* 북마크 항목 아이템 HTML 생성 함수  —  [이동] 제목 ........ [연필][별] */
     function renderBookmarkItemHtml(bm, isInsideStarredFolder = false) {
       return `
         <li class="bookmark-item" data-id="${bm.id}">
@@ -3089,7 +3023,7 @@
       new Sortable(container, {
         animation: 150,
         handle: '.category-header .drag-handle',
-        draggable: '.category-card:not(.starred-folder)', /* 중요모음 카드는 드래그 불가능 고정 */
+        draggable: '.category-card:not(.starred-folder)',
         onEnd: function () {
           const newOrder = Array.from(container.querySelectorAll('.category-card:not(.starred-folder)')).map(card => card.getAttribute('data-id'));
           state.categories.sort((a, b) => newOrder.indexOf(a.id) - newOrder.indexOf(b.id));
@@ -3098,7 +3032,7 @@
       });
 
       document.querySelectorAll('.bookmark-list').forEach(listEl => {
-        if (listEl.getAttribute('data-id') === 'cat-starred-fixed') return; // 중요모음 항목 내 드래그는 예외 처리
+        if (listEl.getAttribute('data-id') === 'cat-starred-fixed') return;
 
         new Sortable(listEl, {
           group: 'bookmarks',
@@ -3133,7 +3067,6 @@
       });
     }
 
-    /* Modal Operations */
     function openCategoryModal() {
       document.getElementById('catModalTitle').textContent = '새 폴더 추가';
       document.getElementById('catId').value = '';
@@ -3308,7 +3241,6 @@
       return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
     }
 
-    /* 키보드 단축키: "/" 검색 포커스, Esc 모달 닫기 / 검색 비우기 */
     document.addEventListener('keydown', (e) => {
       const tag = (document.activeElement && document.activeElement.tagName) || '';
       const typing = ['INPUT', 'TEXTAREA', 'SELECT'].includes(tag);
@@ -3324,14 +3256,11 @@
       }
     });
 
-    /* 모달 바깥(배경) 클릭 시 닫기 */
     document.addEventListener('mousedown', (e) => {
       if (e.target.classList && e.target.classList.contains('modal')) closeModal(e.target.id);
     });
 
-    // Initialize Page
     document.addEventListener('DOMContentLoaded', render);
   </script>
-
 
 </body></html>
