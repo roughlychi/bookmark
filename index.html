@@ -388,6 +388,27 @@
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes popIn { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
 
+
+    .folder-color-picker { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px; padding:4px; }
+    .folder-color-option { aspect-ratio:1 / 1; width:100%; min-width:0; padding:4px; border:1px solid var(--border-color); border-radius:8px; background:var(--card-bg); position:relative; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+    .folder-color-option .color-dot { width:100%; height:100%; display:block; border-radius:4px; border:1px solid rgba(0,0,0,.12); }
+    .folder-color-option[aria-pressed="true"] { border:1px solid #111; box-shadow:0 0 0 4px #b8b8b8; }
+    .folder-color-option[aria-pressed="true"]::after { content:"✓"; position:absolute; right:5px; top:5px; width:18px; height:18px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#111; background:rgba(255,255,255,.9); }
+    .folder-color-option.none-option { padding:4px; }
+    .folder-color-option .transparent-swatch { width:100%; height:100%; border:1px solid #c9c9c9; border-radius:4px; background:repeating-linear-gradient(135deg, #fff 0, #fff 5px, #d5d5d5 5px, #d5d5d5 7px); }
+    #catSaveBtn:disabled { opacity:.45; cursor:not-allowed; }
+    /* Subtle folder color accent: a thin stripe along the card top, with a neutral header. */
+    .category-card[data-folder-color]:not([data-folder-color=""]) {
+      border-top: 3px solid var(--folder-color);
+    }
+    .category-card[data-folder-color]:not([data-folder-color=""]) .category-header {
+      background-color: var(--bg-color);
+    }
+    .category-card[data-folder-color]:not([data-folder-color=""]) .category-title-text {
+      box-shadow: none;
+      padding-left: 0;
+    }
+
     @media (hover: none) {
       .bookmark-actions .btn-icon, .category-header .btn-icon { opacity: 1; }
       .btn-icon { width: 36px; height: 36px; }
@@ -561,7 +582,7 @@
         </li>
       
           </ul>
-        </div><div class="category-card" data-id="cat-1">
+        </div><div class="category-card" data-id="cat-1" data-folder-color="#D98F9B" style="--folder-color: #D98F9B;">
           <div class="category-header">
             <div class="category-title">
               <span class="material-symbols-outlined drag-handle" title="드래그하여 폴더 이동">drag_handle</span>
@@ -569,6 +590,9 @@
               <span class="category-count">4</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -649,7 +673,7 @@
         </li>
       
           </ul>
-        </div><div class="category-card" data-id="cat-2">
+        </div><div class="category-card" data-id="cat-2" data-folder-color="#E2C184" style="--folder-color: #E2C184;">
           <div class="category-header">
             <div class="category-title">
               <span class="material-symbols-outlined drag-handle" title="드래그하여 폴더 이동">drag_handle</span>
@@ -657,6 +681,9 @@
               <span class="category-count">9</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-2')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-2')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -835,6 +862,9 @@
               <span class="category-count">1</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791300988109')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791300988109')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -861,7 +891,7 @@
         </li>
       
           </ul>
-        </div><div class="category-card" data-id="cat-1791303315873">
+        </div><div class="category-card" data-id="cat-1791303315873" data-folder-color="#B9B1A2" style="--folder-color: #B9B1A2;">
           <div class="category-header">
             <div class="category-title">
               <span class="material-symbols-outlined drag-handle" title="드래그하여 폴더 이동">drag_handle</span>
@@ -869,6 +899,9 @@
               <span class="category-count">5</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791303315873')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791303315873')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -975,6 +1008,9 @@
               <span class="category-count">3</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791303737406')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791303737406')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -1045,6 +1081,9 @@
               <span class="category-count">5</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791300748194')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791300748194')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -1143,7 +1182,7 @@
         </li>
       
           </ul>
-        </div><div class="category-card" data-id="cat-1791302530506">
+        </div><div class="category-card" data-id="cat-1791302530506" data-folder-color="#9EBEAA" style="--folder-color: #9EBEAA;">
           <div class="category-header">
             <div class="category-title">
               <span class="material-symbols-outlined drag-handle" title="드래그하여 폴더 이동">drag_handle</span>
@@ -1151,6 +1190,9 @@
               <span class="category-count">6</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791302530506')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791302530506')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -1267,7 +1309,7 @@
         </li>
       
           </ul>
-        </div><div class="category-card" data-id="cat-1791300479282">
+        </div><div class="category-card" data-id="cat-1791300479282" data-folder-color="#B6A0CC" style="--folder-color: #B6A0CC;">
           <div class="category-header">
             <div class="category-title">
               <span class="material-symbols-outlined drag-handle" title="드래그하여 폴더 이동">drag_handle</span>
@@ -1275,6 +1317,9 @@
               <span class="category-count">5</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791300479282')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791300479282')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -1373,7 +1418,7 @@
         </li>
       
           </ul>
-        </div><div class="category-card" data-id="cat-1791301054831">
+        </div><div class="category-card" data-id="cat-1791301054831" data-folder-color="#9EB4C9" style="--folder-color: #9EB4C9;">
           <div class="category-header">
             <div class="category-title">
               <span class="material-symbols-outlined drag-handle" title="드래그하여 폴더 이동">drag_handle</span>
@@ -1381,6 +1426,9 @@
               <span class="category-count">3</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791301054831')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791301054831')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -1451,6 +1499,9 @@
               <span class="category-count">6</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791301322167')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791301322167')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -1575,6 +1626,9 @@
               <span class="category-count">10</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791300387212')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791300387212')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -1771,6 +1825,9 @@
               <span class="category-count">5</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791301725975')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791301725975')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -1877,6 +1934,9 @@
               <span class="category-count">3</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791301921311')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791301921311')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -1947,6 +2007,9 @@
               <span class="category-count">10</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('cat-1791304754161')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('cat-1791304754161')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -2141,18 +2204,59 @@
   <div id="categoryModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <span id="catModalTitle">새 폴더 추가</span>
+        <span id="catModalTitle">폴더 색상 및 이름 수정</span>
       </div>
       <form id="categoryForm" onsubmit="saveCategory(event)">
-        <input type="hidden" id="catId" value="">
+        <input type="hidden" id="catId" value="cat-1791301054831">
         <div class="form-group">
           <label for="catName">폴더 이름</label>
           <input type="text" id="catName" required="" autocomplete="off">
         </div>
+        <div class="form-group">
+          <label>폴더 색상</label>
+          <div id="categoryColorPicker" class="folder-color-picker" role="group" aria-label="폴더 색상 선택">
+        <button type="button" class="folder-color-option none-option" data-color="" aria-label="기본(투명)" title="기본(투명)" aria-pressed="false" onclick="selectCategoryColor('')">
+          <span class="transparent-swatch" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="folder-color-option " data-color="#D98F9B" aria-label="#D98F9B" title="#D98F9B" aria-pressed="false" onclick="selectCategoryColor('#D98F9B')">
+          <span class="color-dot" style="background:#D98F9B"></span>
+        </button>
+        <button type="button" class="folder-color-option " data-color="#D7A18A" aria-label="#D7A18A" title="#D7A18A" aria-pressed="false" onclick="selectCategoryColor('#D7A18A')">
+          <span class="color-dot" style="background:#D7A18A"></span>
+        </button>
+        <button type="button" class="folder-color-option " data-color="#E2C184" aria-label="#E2C184" title="#E2C184" aria-pressed="false" onclick="selectCategoryColor('#E2C184')">
+          <span class="color-dot" style="background:#E2C184"></span>
+        </button>
+        <button type="button" class="folder-color-option " data-color="#9EBEAA" aria-label="#9EBEAA" title="#9EBEAA" aria-pressed="false" onclick="selectCategoryColor('#9EBEAA')">
+          <span class="color-dot" style="background:#9EBEAA"></span>
+        </button>
+        <button type="button" class="folder-color-option " data-color="#8FC7C0" aria-label="#8FC7C0" title="#8FC7C0" aria-pressed="false" onclick="selectCategoryColor('#8FC7C0')">
+          <span class="color-dot" style="background:#8FC7C0"></span>
+        </button>
+        <button type="button" class="folder-color-option " data-color="#91C3D1" aria-label="#91C3D1" title="#91C3D1" aria-pressed="false" onclick="selectCategoryColor('#91C3D1')">
+          <span class="color-dot" style="background:#91C3D1"></span>
+        </button>
+        <button type="button" class="folder-color-option " data-color="#9EB4C9" aria-label="#9EB4C9" title="#9EB4C9" aria-pressed="true" onclick="selectCategoryColor('#9EB4C9')">
+          <span class="color-dot" style="background:#9EB4C9"></span>
+        </button>
+        <button type="button" class="folder-color-option " data-color="#B6A0CC" aria-label="#B6A0CC" title="#B6A0CC" aria-pressed="false" onclick="selectCategoryColor('#B6A0CC')">
+          <span class="color-dot" style="background:#B6A0CC"></span>
+        </button>
+        <button type="button" class="folder-color-option " data-color="#D0A0B5" aria-label="#D0A0B5" title="#D0A0B5" aria-pressed="false" onclick="selectCategoryColor('#D0A0B5')">
+          <span class="color-dot" style="background:#D0A0B5"></span>
+        </button>
+        <button type="button" class="folder-color-option " data-color="#B9B1A2" aria-label="#B9B1A2" title="#B9B1A2" aria-pressed="false" onclick="selectCategoryColor('#B9B1A2')">
+          <span class="color-dot" style="background:#B9B1A2"></span>
+        </button>
+        <button type="button" class="folder-color-option " data-color="#A7A8AE" aria-label="#A7A8AE" title="#A7A8AE" aria-pressed="false" onclick="selectCategoryColor('#A7A8AE')">
+          <span class="color-dot" style="background:#A7A8AE"></span>
+        </button></div>
+          <input type="hidden" id="catColor" value="#9EB4C9">
+        </div>
         <div class="form-actions">
           <div class="form-actions-right">
             <button type="button" class="btn-secondary" onclick="closeModal('categoryModal')">취소</button>
-            <button type="submit" class="btn-primary">저장</button>
+            <button type="submit" class="btn-primary" id="catSaveBtn">저장</button>
           </div>
         </div>
       </form>
@@ -2199,7 +2303,7 @@
     </div>
   </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"><span class="material-symbols-outlined">check_circle</span><span id="toastText"></span></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"><span class="material-symbols-outlined">check_circle</span><span id="toastText">최신 HTML 코드가 클립보드에 복사되었어요</span></div>
 
   <script>
     const DEFAULT_DATA = {
@@ -2207,11 +2311,13 @@
   "categories": [
     {
       "id": "cat-1",
-      "name": "📌기본"
+      "name": "기본",
+      "color": "#D98F9B"
     },
     {
       "id": "cat-2",
-      "name": "💭웹툰"
+      "name": "웹툰",
+      "color": "#E2C184"
     },
     {
       "id": "cat-1791300988109",
@@ -2219,7 +2325,8 @@
     },
     {
       "id": "cat-1791303315873",
-      "name": "🧑‍💻AI"
+      "name": "AI",
+      "color": "#B9B1A2"
     },
     {
       "id": "cat-1791303737406",
@@ -2231,15 +2338,18 @@
     },
     {
       "id": "cat-1791302530506",
-      "name": "🏠주거"
+      "name": "주거",
+      "color": "#9EBEAA"
     },
     {
       "id": "cat-1791300479282",
-      "name": "🕹️게임"
+      "name": "게임",
+      "color": "#B6A0CC"
     },
     {
       "id": "cat-1791301054831",
-      "name": "📁드라이브"
+      "name": "드라이브",
+      "color": "#9EB4C9"
     },
     {
       "id": "cat-1791301322167",
@@ -2251,7 +2361,8 @@
     },
     {
       "id": "cat-1791301725975",
-      "name": "🧑개인정보 보호"
+      "name": "개인정보 보호",
+      "color": ""
     },
     {
       "id": "cat-1791301921311",
@@ -2967,6 +3078,7 @@
         const card = document.createElement('div');
         card.className = 'category-card';
         card.setAttribute('data-id', cat.id);
+        if (cat.color) { card.dataset.folderColor = cat.color; card.style.setProperty('--folder-color', cat.color); }
 
         card.innerHTML = `
           <div class="category-header">
@@ -2976,6 +3088,9 @@
               <span class="category-count">${catBookmarks.length}</span>
             </div>
             <div>
+              <button class="btn-icon" onclick="openCategoryModal('${cat.id}')" title="폴더 이름 및 색상 변경" aria-label="폴더 이름 및 색상 변경">
+                <span class="material-symbols-outlined">palette</span>
+              </button>
               <button class="btn-icon" onclick="deleteCategory('${cat.id}')" title="폴더 삭제" aria-label="폴더 삭제">
                 <span class="material-symbols-outlined">close</span>
               </button>
@@ -3067,10 +3182,39 @@
       });
     }
 
-    function openCategoryModal() {
-      document.getElementById('catModalTitle').textContent = '새 폴더 추가';
-      document.getElementById('catId').value = '';
-      document.getElementById('catName').value = '';
+    const FOLDER_COLORS = ['#D98F9B','#D7A18A','#E2C184','#9EBEAA','#8FC7C0','#91C3D1','#9EB4C9','#B6A0CC','#D0A0B5','#B9B1A2','#A7A8AE'];
+
+    function renderCategoryColorPicker(selected = null) {
+      const picker = document.getElementById('categoryColorPicker');
+      const options = [
+        { value: '', label: '기본(투명)', color: 'transparent' },
+        ...FOLDER_COLORS.map(color => ({ value: color, label: color, color }))
+      ];
+      picker.innerHTML = options.map(option => `
+        <button type="button" class="folder-color-option ${option.value === '' ? 'none-option' : ''}"
+          data-color="${option.value}" aria-label="${option.label}" title="${option.label}"
+          aria-pressed="${selected !== null && selected === option.value}" onclick="selectCategoryColor('${option.value}')">
+          ${option.value === '' ? '<span class="transparent-swatch" aria-hidden="true"></span>' : `<span class="color-dot" style="background:${option.color}"></span>`}
+        </button>`).join('');
+      document.getElementById('catColor').value = selected === null ? '' : selected;
+      document.getElementById('catSaveBtn').disabled = selected === null;
+    }
+
+    function selectCategoryColor(color) {
+      document.getElementById('catColor').value = color;
+      document.querySelectorAll('#categoryColorPicker .folder-color-option').forEach(button => {
+        button.setAttribute('aria-pressed', String(button.dataset.color === color));
+      });
+      document.getElementById('catSaveBtn').disabled = false;
+    }
+
+    function openCategoryModal(catId = null) {
+      const cat = catId ? state.categories.find(item => item.id === catId) : null;
+      document.getElementById('catModalTitle').textContent = cat ? '폴더 색상 및 이름 수정' : '새 폴더 추가';
+      document.getElementById('catId').value = cat ? cat.id : '';
+      document.getElementById('catName').value = cat ? displayName(cat.name) : '';
+      // 저장하려면 기본(투명)을 포함해 색상 항목을 반드시 직접 선택해야 합니다.
+      renderCategoryColorPicker(null);
       document.getElementById('categoryModal').classList.add('active');
       setTimeout(() => document.getElementById('catName').focus(), 30);
     }
@@ -3116,8 +3260,15 @@
       e.preventDefault();
       const name = document.getElementById('catName').value.trim();
       if (!name) return;
-
-      state.categories.push({ id: 'cat-' + Date.now(), name });
+      const id = document.getElementById('catId').value;
+      const color = document.getElementById('catColor').value;
+      if (document.getElementById('catSaveBtn').disabled) return;
+      if (id) {
+        const cat = state.categories.find(item => item.id === id);
+        if (cat) { cat.name = name; cat.color = color; }
+      } else {
+        state.categories.push({ id: 'cat-' + Date.now(), name, color });
+      }
       saveData();
       render();
       closeModal('categoryModal');
@@ -3262,5 +3413,6 @@
 
     document.addEventListener('DOMContentLoaded', render);
   </script>
+
 
 </body></html>
